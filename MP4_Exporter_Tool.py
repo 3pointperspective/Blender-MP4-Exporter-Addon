@@ -1,10 +1,10 @@
 bl_info = {
-    "name": "MP4_Export_Tool",
+    "name": "MP4 Export Tool Addon",
     "blender": (2, 80, 0),
-    "category": "Render",
+    "category": "3D View",
     "version": (1, 0),
     "author": "Aidan Ault",
-    "description": "rendering tool. definable frame rate, export name, output location, resolution, engine.",
+    "description": "Custom MP4 exporting panel for animations with options for frame rate, resolution, engine, etc.",
 }
 
 import bpy
@@ -33,12 +33,12 @@ class RenderProperties(bpy.types.PropertyGroup):
     )
     output_name: bpy.props.StringProperty(
         name="Output File Name",
-        description="Name of the output mp4 file",
+        description="Name of the output MP4 file",
         default="rendered_animation.mp4"
     )
     output_dir: bpy.props.StringProperty(
         name="Output Directory",
-        description="Directory to save the output mp4 file",
+        description="Directory to save the output MP4 file",
         default="C:\\Users\\[user]\\Desktop\\",
         subtype='DIR_PATH'
     )
@@ -55,7 +55,7 @@ class RenderProperties(bpy.types.PropertyGroup):
 # Define the operator for rendering
 class RENDER_OT_CustomRender(bpy.types.Operator):
     bl_idname = "render.custom_render"
-    bl_label = "Render Animation"
+    bl_label = "Export Animation"
     bl_description = "Render the animation with the specified settings"
 
     def execute(self, context):
@@ -96,11 +96,11 @@ class RENDER_OT_CustomRender(bpy.types.Operator):
 
 # Define the panel UI
 class RENDER_PT_CustomPanel(bpy.types.Panel):
-    bl_label = "Custom Render Panel"
+    bl_label = "MP4 Exporter"
     bl_idname = "RENDER_PT_custom_panel"
-    bl_space_type = 'PROPERTIES'
-    bl_region_type = 'WINDOW'
-    bl_context = "render"
+    bl_space_type = 'VIEW_3D'
+    bl_region_type = 'UI'
+    bl_category = 'Custom Render'
 
     def draw(self, context):
         layout = self.layout
@@ -134,4 +134,3 @@ def unregister():
 
 if __name__ == "__main__":
     register()
-
