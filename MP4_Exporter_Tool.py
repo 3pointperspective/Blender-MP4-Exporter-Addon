@@ -100,7 +100,7 @@ class RENDER_PT_CustomPanel(bpy.types.Panel):
     bl_idname = "RENDER_PT_custom_panel"
     bl_space_type = 'VIEW_3D'
     bl_region_type = 'UI'
-    bl_category = 'Custom Render'
+    bl_category = 'MP4 Export Tool'
 
     def draw(self, context):
         layout = self.layout
